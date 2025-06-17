@@ -6,7 +6,7 @@
 /*   By: frocha-b <frocha-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 19:16:09 by frocha-b          #+#    #+#             */
-/*   Updated: 2025/06/09 19:47:06 by frocha-b         ###   ########.fr       */
+/*   Updated: 2025/06/17 11:31:06 by frocha-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,16 @@ void char_to_bit(pid_t pid, char c)
 int main(int ac, char ** argv)
 {
 	int	i = 0;
-	if (ac == 3)
+	int message_len;
+
+	// e se a mensagem for nula
+	if (ac == 3 && argv[2][0])
 	{
+		char *message = argv[2];
+		message_len = ft_strlen(message);
 		// e se o Pid nao for o correto 
 		pid_t pid = (pid_t)ft_atoi(argv[1]);
-		// e se a mensagem for nula
-		char *message = argv[2];
-		while (message[i])
+		while (i <= message_len)
 		{
 			char_to_bit(pid, message[i]);
 			i++;
