@@ -6,12 +6,11 @@
 /*   By: frocha-b <frocha-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 19:16:03 by frocha-b          #+#    #+#             */
-/*   Updated: 2025/06/17 17:27:28 by frocha-b         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:57:15 by frocha-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
 
 // char	*ft_strjoin_char(char *str, char c)
 // {
@@ -25,41 +24,55 @@
 // 	if (!str)
 // 		return (NULL);
 // 	return(str);
-// }	
-// char	*bits_to_char(char c)
-// {
-// 	char *str;
-// 	char *temp;
-
-// 	while (c != '\0')
-// 	{
-// 		temp = str;
-// 		str = ft_strjoin_char(str, c);
-// 		free(temp);
-// 		if (!str)
-// 			return (NULL);
-// 	}
-// 	return (str);
 // }
+
+char	*create_char_str(char c)
+{
+	char *str;
+	
+	str = malloc(2);
+	if (!str)
+		return (NULL);
+	str[0] = c;
+	str[1] = '\0';
+	return (str);
+}
+void	print_message(char c)
+{
+	char *new_str;
+	char *char_str;
+	char *temp;
+	
+	new_str = NULL;
+	char_str = create_char_str(c);
+	if (!new_str)
+		new_str = ft_strdup("");
+	if (c == '\0')
+	{
+		ft_printf("%s", new_str);
+		return ;
+	}
+	temp = new_str;
+	new_str = ft_strjoin(new_str, char_str);
+	free(temp);	
+	if (!new_str)
+		return ;
+}
 void	handler(int signal)
 {	
 	static int 	i = 0;
 	static int 	c = 0;
 	int 	bit = 0;
 	
-	if (i < 8)
-	{
-		if (signal == SIGUSR1)
-			bit = 1;
-		c |= (bit << i);
-		// ft_printf("%d", c);
-        i++;
-	}
+	if (signal == SIGUSR2)
+		bit = 1;
+	c = (c << 1) | bit;    
+    i++;
 	if (i == 8)
 	{
+		print_message(c);
+		// ft_printf("%d\n", c);
 		i = 0;
-		ft_printf("%d",c);
-		// bits_to_char((char) c);
 		c = 0;
 	}
 	usleep (250);

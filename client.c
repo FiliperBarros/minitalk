@@ -6,7 +6,7 @@
 /*   By: frocha-b <frocha-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 19:16:09 by frocha-b          #+#    #+#             */
-/*   Updated: 2025/06/17 11:31:06 by frocha-b         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:48:01 by frocha-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,11 @@
 void	send_bit(pid_t pid, int bit)
 {
 	if (bit == 0)
-	{
 		kill(pid, SIGUSR1);
-		ft_printf("sigusr1\n\n");
-	}
 	else
-	{
 		kill(pid, SIGUSR2);
-		ft_printf("sigurs2\n");
-	}	
-}
-void char_to_bit(pid_t pid, char c)
+}	
+void char_to_bit(pid_t pid, int c)
 {
 	
 	int bit;
@@ -33,7 +27,6 @@ void char_to_bit(pid_t pid, char c)
 	while (i >= 0)
 	{
 		bit = (c >> i) & 1;
-		ft_printf("bit: %d\n", bit);
 		send_bit(pid, bit);
 		i--;
 		usleep(250);
@@ -51,9 +44,10 @@ int main(int ac, char ** argv)
 		message_len = ft_strlen(message);
 		// e se o Pid nao for o correto 
 		pid_t pid = (pid_t)ft_atoi(argv[1]);
-		while (i <= message_len)
+		while (i <message_len)
 		{
-			char_to_bit(pid, message[i]);
+			char_to_bit(pid,(int) message[i]);
+			ft_printf("\n");
 			i++;
 		}
 	}
