@@ -6,7 +6,7 @@
 /*   By: frocha-b <frocha-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 19:16:03 by frocha-b          #+#    #+#             */
-/*   Updated: 2025/07/01 16:33:05 by frocha-b         ###   ########.fr       */
+/*   Updated: 2025/07/03 15:05:06 by frocha-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*create_char_str(char c)
 void	print_message(char c)
 {
 	static char *new_str;
-	char *char_str;
+	static char *char_str;
 	char *temp;
 	
 	if (!new_str)
@@ -36,12 +36,12 @@ void	print_message(char c)
 		ft_printf("%s\n", new_str);
 		free(char_str);
 		free(new_str);
+		new_str = NULL;
 		return ;
 	}
 	char_str = create_char_str(c);
 	temp = new_str;
 	temp = ft_strjoin(new_str, char_str);
-	ft_printf("after strjoin:%s\n", temp);
 	if (!temp)
 	{
 		free(new_str);
@@ -72,6 +72,7 @@ int main(void)
 	ft_printf("PID: %d\n", pid);
 	while (1)
 	{
+		sigaction
 		signal(SIGUSR2, handler);
 		signal(SIGUSR1, handler);
 		pause();
