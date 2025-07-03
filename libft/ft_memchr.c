@@ -6,7 +6,7 @@
 /*   By: frocha-b <frocha-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:01:04 by frocha-b          #+#    #+#             */
-/*   Updated: 2025/04/11 16:11:34 by frocha-b         ###   ########.fr       */
+/*   Updated: 2025/07/03 15:55:51 by frocha-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (i < n)
 	{
 		if (str[i] == ch)
-			return ((void *) (s + i));
+			return ((void *)(s + i));
 		i++;
 	}
 	return (NULL);
