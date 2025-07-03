@@ -6,25 +6,11 @@
 /*   By: frocha-b <frocha-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 19:16:03 by frocha-b          #+#    #+#             */
-/*   Updated: 2025/06/23 17:57:15 by frocha-b         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:33:05 by frocha-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
-// char	*ft_strjoin_char(char *str, char c)
-// {
-// 	char *temp;
-
-// 	temp = NULL;
-// 	temp[0] = c;
-// 	temp[1] = '\0';
-// 	str = ft_strjoin(str, temp);
-// 	free(temp);
-// 	if (!str)
-// 		return (NULL);
-// 	return(str);
-// }
 
 char	*create_char_str(char c)
 {
@@ -39,24 +25,29 @@ char	*create_char_str(char c)
 }
 void	print_message(char c)
 {
-	char *new_str;
+	static char *new_str;
 	char *char_str;
 	char *temp;
 	
-	new_str = NULL;
-	char_str = create_char_str(c);
 	if (!new_str)
-		new_str = ft_strdup("");
-	if (c == '\0')
+		new_str = calloc(1, 1);
+	if (c == 0)
 	{
-		ft_printf("%s", new_str);
+		ft_printf("%s\n", new_str);
+		free(char_str);
+		free(new_str);
 		return ;
 	}
+	char_str = create_char_str(c);
 	temp = new_str;
-	new_str = ft_strjoin(new_str, char_str);
-	free(temp);	
-	if (!new_str)
+	temp = ft_strjoin(new_str, char_str);
+	ft_printf("after strjoin:%s\n", temp);
+	if (!temp)
+	{
+		free(new_str);
 		return ;
+	}
+	new_str = temp;
 }
 void	handler(int signal)
 {	
@@ -67,15 +58,13 @@ void	handler(int signal)
 	if (signal == SIGUSR2)
 		bit = 1;
 	c = (c << 1) | bit;    
-    i++;
+	i++;
 	if (i == 8)
 	{
-		print_message(c);
-		// ft_printf("%d\n", c);
+		print_message((char)c);
 		i = 0;
 		c = 0;
 	}
-	usleep (250);
 }
 int main(void)
 {

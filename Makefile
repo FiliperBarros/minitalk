@@ -20,11 +20,6 @@ $(LIBFT):
 
 $(NAME_SERVER): $(OBJS_SERVER) $(LIBFT)
 	$(CC) $(CFLAGS) $^ -L$(LIBFT_DIR) -lft -o $@
-$(LIBFT):
-	make -C $(LIBFT_DIR)
-
-$(NAME_SERVER): $(OBJS_SERVER) $(LIBFT)
-	$(CC) $(CFLAGS) $^ -L$(LIBFT_DIR) -lft -o $@
 
 $(NAME_CLIENT): $(OBJS_CLIENT) $(LIBFT)
 	$(CC) $(CFLAGS) $^ -L$(LIBFT_DIR) -lft -o $@ 

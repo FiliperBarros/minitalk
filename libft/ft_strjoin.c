@@ -6,11 +6,12 @@
 /*   By: frocha-b <frocha-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:38:31 by frocha-b          #+#    #+#             */
-/*   Updated: 2025/06/19 14:08:36 by frocha-b         ###   ########.fr       */
+/*   Updated: 2025/06/26 15:50:47 by frocha-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {
