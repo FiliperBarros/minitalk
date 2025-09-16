@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   exit_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frocha-b <frocha-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 19:15:59 by frocha-b          #+#    #+#             */
-/*   Updated: 2025/07/03 15:48:27 by frocha-b         ###   ########.fr       */
+/*   Created: 2025/09/09 18:27:03 by frocha-b          #+#    #+#             */
+/*   Updated: 2025/09/12 11:06:41 by frocha-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "minitalk.h"
 
-# include <unistd.h>
-# include <signal.h>
-# include <stdlib.h>
-# include "libft/libft.h"
+void	exit_error(char *message)
+{
+	int	len;
 
-void	send_bit(pid_t pid, int bit);
-void	char_to_bit(pid_t pid, int c);
-char	*create_char_str(char c);
-void	print_message(char c);
-void	handler(int signal);
-
-#endif
+	len = ft_strlen(message);
+	write(2, message, len);
+	exit(1);
+}
