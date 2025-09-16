@@ -6,7 +6,7 @@
 #    By: frocha-b <frocha-b@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/09 12:27:02 by frocha-b          #+#    #+#              #
-#    Updated: 2025/09/16 10:43:29 by frocha-b         ###   ########.fr        #
+#    Updated: 2025/09/16 10:57:07 by frocha-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,17 +38,21 @@ OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
 SRCS_SERVER = \
 	$(SRC_DIR)/server.c \
 	$(SRC_DIR)/exit_error.c
+	
 OBJS_SERVER = $(SRCS_SERVER:.c=.o)
 
 # Source and object files (bonus)
 SRCS_CLIENT_BONUS = \
 	$(SRC_BONUS_DIR)/client_bonus.c \
 	$(SRC_BONUS_DIR)/exit_error_bonus.c
+	
 OBJS_CLIENT_BONUS = $(SRCS_CLIENT_BONUS:.c=.o)
 
 SRCS_SERVER_BONUS = \
 	$(SRC_BONUS_DIR)/server_bonus.c \
 	$(SRC_BONUS_DIR)/exit_error_bonus.c
+
+
 OBJS_SERVER_BONUS = $(SRCS_SERVER_BONUS:.c=.o)
 
 # Compiler and flags
