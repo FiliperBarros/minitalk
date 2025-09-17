@@ -6,7 +6,7 @@
 /*   By: frocha-b <frocha-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 19:16:09 by frocha-b          #+#    #+#             */
-/*   Updated: 2025/09/16 11:00:20 by frocha-b         ###   ########.fr       */
+/*   Updated: 2025/09/17 10:54:27 by frocha-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,17 @@ static void	bit_sender(pid_t pid, int bit)
 
 static void	message_sender(pid_t pid, char *message)
 {
-	int		i;
 	int		bit_pos;
 	char	current_char;
 
-	i = 0;
 	while (1)
 	{
 		current_char = message[i];
 		bit_pos = 8;
 		while (bit_pos--)
-			bit_sender(pid, (current_char >> bit_pos) & 1);
+			bit_sender(pid, (current_char >> bit_pos) & 1); current_char>> 0 | 0
 		if (current_char == '\0')
 			break ;
-		i++;
 	}
 }
 
